@@ -1,0 +1,207 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://DB/row.gd" type="Script" id=1]
+
+[node name="row" type="Panel"]
+self_modulate = Color( 0.360784, 0.941176, 1, 1 )
+margin_right = 1590.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 1590, 34 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="id" type="Label" parent="."]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 102.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 100, 30 )
+rect_clip_content = true
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="holder" type="HBoxContainer" parent="."]
+margin_left = 104.0
+margin_top = 2.0
+margin_right = 1590.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 1486, 30 )
+custom_constants/separation = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="0" type="Button" parent="holder"]
+visible = false
+margin_right = 150.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="1" type="Button" parent="holder"]
+visible = false
+margin_left = 152.0
+margin_right = 302.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="2" type="Button" parent="holder"]
+visible = false
+margin_left = 304.0
+margin_right = 454.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="3" type="Button" parent="holder"]
+visible = false
+margin_left = 456.0
+margin_right = 606.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="4" type="Button" parent="holder"]
+visible = false
+margin_left = 608.0
+margin_right = 758.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="5" type="Button" parent="holder"]
+visible = false
+margin_left = 760.0
+margin_right = 910.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="6" type="Button" parent="holder"]
+visible = false
+margin_left = 912.0
+margin_right = 1062.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="7" type="Button" parent="holder"]
+visible = false
+margin_left = 1064.0
+margin_right = 1214.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="8" type="Button" parent="holder"]
+visible = false
+margin_left = 1216.0
+margin_right = 1366.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="9" type="Button" parent="holder"]
+visible = false
+margin_left = 1368.0
+margin_right = 1518.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="10" type="Button" parent="holder"]
+visible = false
+margin_left = 1520.0
+margin_right = 1670.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="11" type="Button" parent="holder"]
+visible = false
+margin_left = 1672.0
+margin_right = 1822.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="12" type="Button" parent="holder"]
+visible = false
+margin_left = 1824.0
+margin_right = 1974.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="13" type="Button" parent="holder"]
+visible = false
+margin_left = 1976.0
+margin_right = 2126.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="14" type="Button" parent="holder"]
+visible = false
+margin_left = 2128.0
+margin_right = 2278.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="15" type="Button" parent="holder"]
+visible = false
+margin_left = 2280.0
+margin_right = 2430.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true
+
+[node name="16" type="Button" parent="holder"]
+visible = false
+margin_left = 2432.0
+margin_right = 2582.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+clip_text = true

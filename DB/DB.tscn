@@ -1,0 +1,261 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://DB/menu.gd" type="Script" id=1]
+[ext_resource path="res://DB/row.tscn" type="PackedScene" id=2]
+
+[node name="DB" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="change" type="Panel" parent="."]
+margin_top = 34.0
+margin_right = 1600.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 1600, 166 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="TextEdit" parent="change"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 45.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 1500, 156 )
+text = "Hello!
+
+- This is a JSON Table-like-Editor made in  Godot 3.3.2 stable.
+- This editor is under the MIT license.
+- Input JSON files HAVE to be in a dictionary format and each key has to have up to 16 attributes (to support more attributes, amend the res://DB/row.tscn to have more slots in the holder).
+- Hints for usage:
+
+To load a file:
+	Put a JSON file inside res://data/ directory and write its name to the file path input on top of this screen.
+	Hit 'Load' button in top-left corner
+
+To save loaded data into a file:
+	Check the file path for saving and hit 'Save' button in top-left corner
+
+To edit data of a cell in a row in the loaded data:
+	Click on a desired cell.
+	Change the value of that cell in this text field to whatever you want.
+	Hit 'Save' button on the right of this text field to put the change into the loaded data
+	(IMPORTANT: This will not add the new entry into the file itself. Hit 'save' button on the top-left to save the new entry into the file)
+
+To clear the value of a cell:
+	Select the cell of a row you wish the clear.
+	Hit 'clear' button on the right.
+	This will change the value for the specific cell and row of the loaded data.
+
+To add a new row into the loaded data:
+	Write the new desired ID into this text field (nothing else but the ID itself).
+	Hit 'New row' button on the right.
+	New record will be created in the loaded data and the default empty values will correspond to the types of the first entry in the JSON file.
+
+To remove the ID from the loaded data:
+	Select any cell on the row you wish to remove and hit 'Drop row' button on the right"
+show_line_numbers = true
+draw_tabs = true
+fold_gutter = true
+highlight_all_occurrences = true
+virtual_keyboard_enabled = false
+wrap_enabled = true
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="save" type="Button" parent="change"]
+margin_left = 1505.0
+margin_top = 5.0
+margin_right = 1594.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 89, 30 )
+mouse_default_cursor_shape = 2
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clear" type="Button" parent="change"]
+margin_left = 1505.0
+margin_top = 37.0
+margin_right = 1594.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 89, 30 )
+mouse_default_cursor_shape = 2
+text = "Clear"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="new" type="Button" parent="change"]
+margin_left = 1505.0
+margin_top = 69.0
+margin_right = 1594.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 89, 30 )
+mouse_default_cursor_shape = 2
+text = "New row"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="drop" type="Button" parent="change"]
+margin_left = 1505.0
+margin_top = 101.0
+margin_right = 1594.0
+margin_bottom = 131.0
+rect_min_size = Vector2( 89, 30 )
+mouse_default_cursor_shape = 2
+text = "Drop row"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tablespace" type="Panel" parent="."]
+self_modulate = Color( 0, 0.576471, 1, 1 )
+margin_top = 200.0
+margin_right = 1600.0
+margin_bottom = 800.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scroll" type="ScrollContainer" parent="tablespace"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1595.0
+margin_bottom = 595.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grid" type="GridContainer" parent="tablespace/scroll"]
+margin_right = 1590.0
+margin_bottom = 590.0
+rect_min_size = Vector2( 1590, 590 )
+custom_constants/vseparation = 5
+custom_constants/hseparation = 2
+
+[node name="header" parent="tablespace/scroll/grid" instance=ExtResource( 2 )]
+margin_bottom = 34.0
+
+[node name="menu" type="Panel" parent="."]
+self_modulate = Color( 0, 0.180392, 1, 1 )
+margin_right = 1000.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 1000, 34 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="options" type="HBoxContainer" parent="menu"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 402.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 406, 30 )
+custom_constants/separation = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="close" type="Button" parent="menu/options"]
+margin_right = 100.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 100, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+text = "Close App"
+clip_text = true
+
+[node name="load" type="Button" parent="menu/options"]
+margin_left = 102.0
+margin_right = 202.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 100, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+text = "Load"
+clip_text = true
+
+[node name="save" type="Button" parent="menu/options"]
+margin_left = 204.0
+margin_right = 304.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 100, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+text = "Save"
+clip_text = true
+
+[node name="create" type="Button" parent="menu/options"]
+margin_left = 306.0
+margin_right = 406.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 100, 30 )
+rect_clip_content = true
+mouse_default_cursor_shape = 2
+text = "Create"
+clip_text = true
+
+[node name="Label" type="Label" parent="menu"]
+margin_left = 410.0
+margin_top = 2.0
+margin_right = 475.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 65, 30 )
+rect_clip_content = true
+text = "File path:"
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="menu"]
+margin_left = 475.0
+margin_top = 2.0
+margin_right = 875.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 522, 30 )
+text = "res://data/"
+virtual_keyboard_enabled = false
+placeholder_text = "Full JSON file path"
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="error" type="Label" parent="menu"]
+visible = false
+margin_left = 1002.0
+margin_top = 2.0
+margin_right = 1598.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 596, 30 )
+rect_clip_content = true
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="change/save" to="menu" method="save_changed_cell"]
+[connection signal="pressed" from="change/clear" to="menu" method="clear_cell_data"]
+[connection signal="pressed" from="change/new" to="menu" method="new_row"]
+[connection signal="pressed" from="change/drop" to="menu" method="drop_row"]
+[connection signal="pressed" from="menu/options/close" to="menu" method="perform_action" binds= [ "close" ]]
+[connection signal="pressed" from="menu/options/load" to="menu" method="perform_action" binds= [ "load" ]]
+[connection signal="pressed" from="menu/options/save" to="menu" method="perform_action" binds= [ "save" ]]
+[connection signal="pressed" from="menu/options/create" to="menu" method="perform_action" binds= [ "create" ]]
