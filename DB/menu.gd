@@ -59,7 +59,7 @@ func new_row():
 		else:
 			show_err("Non-defined type of a column - cannot create new row")
 			return
-	header.row_data[new_id] = new_row_data
+	header.file_data[new_id] = new_row_data
 	var row = row_scene.instance()
 	row.main_key = String(new_id)
 	row.row_data = new_row_data
@@ -113,6 +113,10 @@ func preview_cell_to_edit(row: String, cell: int, data: String):
 	err_label.hide()
 	change_edit.clear_undo_history()
 	change_edit.text = data.replace("\\", "")
+	change_edit.grab_focus()
+	show_ok_err(
+		"Now editing row ID: " + row + ", column: " + header.columns[cell]
+	)
 	edit_cell = cell
 	edit_row = row
 
@@ -164,12 +168,18 @@ func display_data(data: Dictionary):
 	
 	# get rid of any old data
 	for child in tablespace.get_children():
-		if child.name == "header":
+		if child.name == "header": # ensure the header stays in the table
 			continue
 		# to avoid having new children with the same name as the old ones:
 		child.name = child.name + "_exit"
 		child.queue_free()
 	
+	# reset scrolls, to see everything from the beginning
+	var scroll = tablespace.get_parent()
+	scroll.scroll_horizontal = 0
+	scroll.scroll_vertical = 0
+	
+	# now set the header with column names and populate data holders
 	header.main_key = "ID:"
 	header.columns = ordered_columns
 	header.row_data = columns
