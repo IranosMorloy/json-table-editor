@@ -56,7 +56,10 @@ func new_row():
 			new_row_data[column] = []
 		elif header.row_data[column] == TYPE_DICTIONARY:
 			new_row_data[column] = {}
+		elif header.row_data[column] == TYPE_BOOL:
+			new_row_data[column] = true
 		else:
+			print("failed to identify column: ", column)
 			show_err("Non-defined type of a column - cannot create new row")
 			return
 	header.file_data[new_id] = new_row_data
@@ -70,15 +73,35 @@ func new_row():
 	show_ok_err("New row created Ok with ID: " + String(new_id))
 
 func drop_row():
-	if not edit_row:
-		show_err("Select any cell in desired row first!")
-		return
-	if tablespace.has_node(edit_row):
+	if not edit_row: show_err("Select any cell in desired row first!")
+	elif tablespace.has_node(edit_row):
 		tablespace.get_node(edit_row).queue_free()
 		header.file_data.erase(edit_row)
 		show_ok_err("Row ID: " + edit_row + " dropped Ok.")
-	else:
-		show_err("Selected row ID not found, cannot drop!")
+	else: show_err("Selected row ID not found, cannot drop!")
+
+func get_new_column_input():
+	var new_col = change_edit.text.split(":")
+	if new_col.size() == 2: add_new_column(new_col[0], new_col[1])
+
+func add_new_column(clmn_name: String, clmn_type: String):
+	var data: Dictionary = header.file_data
+	var first = data.keys().front()
+	var validation: bool = true
+	for id in data[first]:
+		if id == clmn_name:
+			validation = false
+			break
+	if validation and clmn_type in ["STR", "INT", "LIST", "DICT", "FLOAT", "BOOL"]:
+		var value
+		if clmn_type == "STR": value = ""
+		elif clmn_type == "INT": value = 0
+		elif clmn_type == "LIST": value = []
+		elif clmn_type == "DICT": value = {}
+		elif clmn_type == "FLOAT": value = 0.0
+		elif clmn_type == "BOOL": value = true
+		for id in data: data[id][clmn_name] = value
+		display_data(data)
 
 #----------------------------------------------------------------------------
 # base methods
@@ -94,21 +117,13 @@ func show_err(text: String):
 	err_label.show()
 
 func perform_action(action: String):
-	if action == "close":
-		get_tree().quit()
-	elif action == "load" and get_file_path():
-		load_file_from_path(get_file_path())
-	elif action == "save":
-		collect_row_data()
-	elif action == "create":
-		show_err("File Creation is Not implemented yet.")
-		return
-	else:
-		show_err("File path is not valid.")
+	if action == "close": get_tree().quit()
+	elif action == "load" and get_file_path(): load_file_from_path(get_file_path())
+	elif action == "save": collect_row_data()
+	elif action == "create": show_err("File Creation is Not implemented yet.")
+	else: show_err("File path is not valid.")
 
-func get_file_path() -> String:
-	return path_edit.text
-
+func get_file_path() -> String: return path_edit.text
 func preview_cell_to_edit(row: String, cell: int, data: String):
 	err_label.hide()
 	change_edit.clear_undo_history()
@@ -139,6 +154,7 @@ func collect_row_data():
 func save_data_to_file(path: String, data: Dictionary):
 	path = ProjectSettings.globalize_path(path)
 	DataParser.write_data(path, data)
+	show_ok_err("File saved Ok to path: " + path)
 
 #----------------------------------------------------------------------------
 # loading data
@@ -150,6 +166,7 @@ func load_file_from_path(path: String):
 	var data = DataParser.load_data(path)
 	if data:
 		clear_cell_preview()
+		show_ok_err("File loaded Ok from path: " + path)
 		display_data(data)
 	else:
 		show_err("File not found or data are unreadable.")

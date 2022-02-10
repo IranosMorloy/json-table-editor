@@ -57,6 +57,13 @@ To add a new row into the loaded data:
 	Hit 'New row' button on the right.
 	New record will be created in the loaded data and the default empty values will correspond to the types of the first entry in the JSON file.
 
+To add a new column (attribute for each ID) to the data:
+	Write into this text field the arguments in format:		name:TYPE
+	Recognised types are (everything has to be uppercase!!!):	 STR, INT, LIST, DICT, BOOL, FLOAT
+	For example, with a new attr of bool with name 'this_is_bool', the text you enter (without spaces!!!) will be:
+			this_is_bool:BOOL
+	Hit 'New Colmn' button on the bottom right of this text field.'
+
 To remove the ID from the loaded data:
 	Select any cell on the row you wish to remove and hit 'Drop row' button on the right"
 show_line_numbers = true
@@ -115,6 +122,19 @@ margin_bottom = 131.0
 rect_min_size = Vector2( 89, 30 )
 mouse_default_cursor_shape = 2
 text = "Drop row"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="column" type="Button" parent="change"]
+margin_left = 1505.0
+margin_top = 133.0
+margin_right = 1594.0
+margin_bottom = 163.0
+rect_min_size = Vector2( 89, 30 )
+mouse_default_cursor_shape = 2
+text = "New Colmn"
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -229,7 +249,7 @@ margin_top = 2.0
 margin_right = 875.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 522, 30 )
-text = "res://data/"
+text = "res://data/systems.json"
 virtual_keyboard_enabled = false
 placeholder_text = "Full JSON file path"
 caret_blink = true
@@ -255,6 +275,7 @@ __meta__ = {
 [connection signal="pressed" from="change/clear" to="menu" method="clear_cell_data"]
 [connection signal="pressed" from="change/new" to="menu" method="new_row"]
 [connection signal="pressed" from="change/drop" to="menu" method="drop_row"]
+[connection signal="pressed" from="change/column" to="menu" method="get_new_column_input"]
 [connection signal="pressed" from="menu/options/close" to="menu" method="perform_action" binds= [ "close" ]]
 [connection signal="pressed" from="menu/options/load" to="menu" method="perform_action" binds= [ "load" ]]
 [connection signal="pressed" from="menu/options/save" to="menu" method="perform_action" binds= [ "save" ]]

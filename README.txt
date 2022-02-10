@@ -28,5 +28,12 @@ To add a new row into the loaded data:
 	Hit 'New row' button on the right.
 	New record will be created in the loaded data and the default empty values will correspond to the types of the first entry in the JSON file.
 
+To add a new column (attribute for each ID) to the data:
+	Write into this text field the arguments in format:		name:TYPE
+	Recognised types are (everything has to be uppercase!!!):	 STR, INT, LIST, DICT, BOOL, FLOAT
+	For example, with a new attr of bool with name 'this_is_bool', the text you enter (without spaces!!!) will be:
+			this_is_bool:BOOL
+	Hit 'New Colmn' button on the bottom right of this text field.'
+
 To remove the ID from the loaded data:
 	Select any cell on the row you wish to remove and hit 'Drop row' button on the right
