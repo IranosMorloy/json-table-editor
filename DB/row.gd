@@ -47,8 +47,7 @@ func update_cell_value(cell: int, new_value: String, keys: Dictionary):
 	target.text = new_value
 	target.hint_tooltip = new_value
 	var converted_value = convert_value(new_value, keys[columns[cell]])
-	if not converted_value == null:
-		row_data[columns[cell]] = converted_value
+	if not converted_value == null: row_data[columns[cell]] = converted_value
 
 func convert_value(value, type):
 	if type == TYPE_STRING:
@@ -56,7 +55,7 @@ func convert_value(value, type):
 	elif type == TYPE_INT:
 		return int(value)
 	elif type == TYPE_ARRAY:
-		return Array(value)
+		return parse_json(value)
 	elif type == TYPE_DICTIONARY:
 		return parse_json(value)
 	elif type == TYPE_REAL:
@@ -66,5 +65,4 @@ func convert_value(value, type):
 			menu_node.show_err("Value is of non-defined type")
 		return null
 
-func get_data() -> Dictionary:
-	return row_data
+func get_data() -> String: return to_json(row_data)

@@ -17,8 +17,7 @@ var edit_cell: int = -1
 
 func save_changed_cell():
 	var new_value = change_edit.text
-	for ch in [" ", "\n", "\t", "\\"]:
-		new_value = new_value.replace(ch, "")
+	for ch in ["\n", "\t", "\\"]: new_value = new_value.replace(ch, "")
 	if (
 		not new_value.empty()
 		and edit_cell >= 0
@@ -29,8 +28,7 @@ func save_changed_cell():
 			edit_cell, new_value, header.row_data
 		)
 		show_ok_err("New cell data edited Ok")
-	else:
-		show_err("No value to save!")
+	else: show_err("No value to save!")
 
 func clear_cell_data():
 	change_edit.text = '""'
@@ -145,13 +143,32 @@ func clear_cell_preview():
 # saving data
 
 func collect_row_data():
-	var data = {}
-	for row in tablespace.get_children():
-		if row.name == "header": continue
-		data[row.main_key] = row.get_data()
+	var data = "{"
+	var list = get_sorted_child_names()
+	for id in list:
+		var row = tablespace.get_node(id)
+		data += '"{id}":{data}'.format({
+			'id': row.main_key, 'data': row.get_data()
+		})
+		if not id == list.back(): data += ","
+	data += "}"
 	save_data_to_file(get_file_path(), data)
 
-func save_data_to_file(path: String, data: Dictionary):
+func get_sorted_child_names():
+	var names_list = []
+	var children = tablespace.get_children()
+	children.erase(tablespace.get_node("header"))
+	if children[0].main_key.is_valid_integer():
+		var int_list = []
+		for child in children: int_list.append(int(child.main_key))
+		int_list.sort()
+		for id in int_list: names_list.append(String(id))
+	else:
+		for child in children: names_list.append(child.main_key)
+	return names_list
+	
+
+func save_data_to_file(path: String, data: String):
 	path = ProjectSettings.globalize_path(path)
 	DataParser.write_data(path, data)
 	show_ok_err("File saved Ok to path: " + path)
